@@ -11,13 +11,13 @@ function init() {
   const button     = document.querySelector('#expose button');
   const jsConfetti = new JSConfetti();
 
-  horn.onchange = (event) => {
+  horn.onchange = () => {
     img.src = `assets/images/${horn.value}.svg`;
     img.alt = horn.selectedOptions[0].innerText;
     audio.src = `assets/audio/${horn.value}.mp3`;
   };
 
-  volume.oninput = (event) => {
+  volume.oninput = () => {
     const value = volume.value;
     audio.volume = value / 100.0;
 
@@ -31,7 +31,7 @@ function init() {
     icon.alt = `Volume level ${level}`;
   };
 
-  button.onclick = (event) => {
+  button.onclick = () => {
     audio.play();
     if (horn.selectedIndex == 3) jsConfetti.addConfetti();
   };

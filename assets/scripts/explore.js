@@ -10,7 +10,7 @@ function init() {
   const button = document.querySelector('#explore button');
   let voices;
 
-  synth.onvoiceschanged = (event) => {
+  synth.onvoiceschanged = () => {
     voices = synth.getVoices();
     for (const voice of voices) {
       const option = document.createElement('option');
@@ -26,14 +26,14 @@ function init() {
     }
   }
 
-  button.onclick = (event) => {
+  button.onclick = () => {
     const utterThis = new SpeechSynthesisUtterance(text.value);
     utterThis.voice = voices[select.selectedIndex - 1];
-    utterThis.onstart = (event) => {
+    utterThis.onstart = () => {
       img.src = `assets/images/smiling-open.png`;
       img.alt = `Smiling open face`;
     }
-    utterThis.onend = (event) => {
+    utterThis.onend = () => {
       img.src = `assets/images/smiling.png`;
       img.alt = `Smiling face`;
     }
