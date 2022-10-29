@@ -7,8 +7,8 @@ function init() {
   const img        = document.querySelector('#expose img');
   const audio      = document.querySelector('#expose audio');
   const volume     = document.querySelector('#volume');
-  const icon       = document.querySelector('#volume-controls img')
-  const button     = document.querySelector('#expose button')
+  const icon       = document.querySelector('#volume-controls img');
+  const button     = document.querySelector('#expose button');
   const jsConfetti = new JSConfetti();
 
   horn.onchange = (event) => {
@@ -32,7 +32,7 @@ function init() {
   };
 
   button.onclick = (event) => {
-    if (audio.src != "") audio.play();
+    audio.play();
     if (horn.selectedIndex == 3) jsConfetti.addConfetti();
   };
 
