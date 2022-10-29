@@ -3,20 +3,22 @@
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
-  const hornSelect = document.querySelector('#horn-select');
-  const img        = document.querySelector('img');
-  const audio      = document.querySelector('audio');
+  const horn       = document.querySelector('#horn-select');
+  const img        = document.querySelector('#expose img');
+  const audio      = document.querySelector('#expose audio');
   const volume     = document.querySelector('#volume');
   const icon       = document.querySelector('#volume-controls img')
+  const button     = document.querySelector('#expose button')
+  const jsConfetti = new JSConfetti();
 
-  hornSelect.onchange = (event) => {
-    const value = event.target.value;
-    img.src = `assets/images/${value}.svg`;
-    audio.src = `assets/audio/${value}.mp3`;
+  horn.onchange = (event) => {
+    img.src = `assets/images/${horn.value}.svg`;
+    img.alt = horn.selectedOptions[0].innerText;
+    audio.src = `assets/audio/${horn.value}.mp3`;
   };
 
   volume.oninput = (event) => {
-    const value = event.target.value;
+    const value = volume.value;
     audio.volume = value / 100.0;
 
     var level;
@@ -29,5 +31,9 @@ function init() {
     icon.alt = `Volume level ${level}`;
   };
 
-  
+  button.onclick = (event) => {
+    if (audio.src != "") audio.play();
+    if (horn.selectedIndex == 3) jsConfetti.addConfetti();
+  };
+
 }
