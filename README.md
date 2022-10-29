@@ -1,3 +1,3 @@
-# Lab 5 - Starter
+# Lab 5
 
 Charles-Pierre Beurtheret
