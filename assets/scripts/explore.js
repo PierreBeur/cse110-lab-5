@@ -4,11 +4,15 @@ window.addEventListener('DOMContentLoaded', init);
 
 function init() {
   const synth  = window.speechSynthesis;
+  const img    = document.querySelector('#explore img');
+  const text   = document.querySelector('#text-to-speak');
   const select = document.querySelector('#voice-select');
   const button = document.querySelector('#explore button');
+  let voices;
 
   synth.onvoiceschanged = (event) => {
-    for (const voice of synth.getVoices()) {
+    voices = synth.getVoices();
+    for (const voice of voices) {
       const option = document.createElement('option');
       option.textContent = `${voice.name} (${voice.lang})`;
 
@@ -23,6 +27,17 @@ function init() {
   }
 
   button.onclick = (event) => {
-    
+    const utterThis = new SpeechSynthesisUtterance(text.value);
+    utterThis.voice = voices[select.selectedIndex - 1];
+    utterThis.onstart = (event) => {
+      img.src = `assets/images/smiling-open.png`;
+      img.alt = `Smiling open face`;
+    }
+    utterThis.onend = (event) => {
+      img.src = `assets/images/smiling.png`;
+      img.alt = `Smiling face`;
+    }
+    synth.speak(utterThis);
   }
+
 }
